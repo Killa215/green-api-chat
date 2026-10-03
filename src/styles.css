@@ -1,0 +1,420 @@
+/* ===== Базовые стили ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #0F172A;
+  color: #E5E7EB;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input {
+  font-family: inherit;
+  outline: none;
+}
+
+/* ===== Форма входа ===== */
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  background: #1F2937;
+  padding: 40px 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.login-container h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #F9FAFB;
+}
+
+.login-container input {
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: #111827;
+  color: #E5E7EB;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.login-container input:focus {
+  background: #111827;
+  border-color: #2A7FFF;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 8px;
+  background: #2A7FFF;
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.login-container button:hover {
+  background: #1a6ae6;
+}
+
+/* ===== Основной макет чата ===== */
+.app {
+  display: flex;
+  height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #111827;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Список чатов ===== */
+.chat-list {
+  width: 320px;
+  min-width: 320px;
+  background: #1F2937;
+  border-right: 1px solid #374151;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-list-title {
+  padding: 18px 18px 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #F9FAFB;
+}
+
+.new-chat {
+  display: flex;
+  gap: 8px;
+  padding: 14px;
+  border-bottom: 1px solid #374151;
+}
+
+.new-chat input {
+  flex: 1;
+  padding: 10px 14px;
+  background: #111827;
+  color: #E5E7EB;
+  border: 1px solid #374151;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.new-chat input:focus {
+  background: #111827;
+  border-color: #2A7FFF;
+}
+
+.new-chat button {
+  width: 40px;
+  height: 40px;
+  background: #2A7FFF;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.new-chat button:hover {
+  background: #1a6ae6;
+}
+
+.new-chat button:active {
+  transform: scale(0.95);
+}
+
+.chat-list ul {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chat-list li {
+  padding: 14px 18px;
+  cursor: pointer;
+  border-bottom: 1px solid #374151;
+  font-size: 14px;
+  color: #D1D5DB;
+  transition: background 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-list li:hover {
+  background: #374151;
+}
+
+.chat-list li.active {
+  background: #2A7FFF;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* ===== Окно чата ===== */
+.chat-window {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #111827;
+}
+
+.chat-window.empty {
+  align-items: center;
+  justify-content: center;
+  color: #6B7280;
+  font-size: 15px;
+}
+
+.chat-window header {
+  padding: 16px 24px;
+  background: #1F2937;
+  border-bottom: 1px solid #374151;
+  font-weight: 600;
+  font-size: 15px;
+  color: #F9FAFB;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2A7FFF;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* ===== Сообщения ===== */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bubble {
+  max-width: 60%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  animation: fadeIn 0.2s ease;
+}
+
+.bubble.incoming {
+  background: #374151;
+  color: #F9FAFB;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.bubble.outgoing {
+  background: #2A7FFF;
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Поле ввода ===== */
+.input-row {
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px;
+  background: #1F2937;
+  border-top: 1px solid #374151;
+  align-items: center;
+}
+
+.input-row input {
+  flex: 1;
+  padding: 12px 18px;
+  background: #111827;
+  color: #E5E7EB;
+  border: 1px solid #374151;
+  border-radius: 22px;
+  font-size: 15px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.input-row input:focus {
+  background: #111827;
+  border-color: #2A7FFF;
+}
+
+.input-row button {
+  padding: 0 24px;
+  height: 44px;
+  background: #2A7FFF;
+  color: #ffffff;
+  border-radius: 22px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.input-row button:hover {
+  background: #1a6ae6;
+}
+
+.input-row button:active {
+  transform: scale(0.97);
+}
+
+/* ===== Скроллбар ===== */
+.messages::-webkit-scrollbar,
+.chat-list ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages::-webkit-scrollbar-thumb,
+.chat-list ul::-webkit-scrollbar-thumb {
+  background: #4B5563;
+  border-radius: 3px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover,
+.chat-list ul::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+.loading {
+  text-align: center;
+  color: #6B7280;
+  font-size: 14px;
+  padding: 12px;
+  font-style: italic;
+}
+
+/* ===== Элементы списка чатов: имя + кнопка меню ===== */
+.chat-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+}
+
+.chat-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Кнопка с тремя точками */
+.chat-menu-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  color: #9CA3AF;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.chat-list li:hover .chat-menu-btn,
+.chat-list li.active .chat-menu-btn {
+  opacity: 1;
+}
+
+.chat-menu-btn:hover {
+  background: #374151;
+  color: #F9FAFB;
+}
+
+/* Выпадающее меню — теперь fixed, рендерится в body */
+.chat-menu {
+  position: fixed;
+  background: #1F2937;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  padding: 4px;
+  z-index: 9999;
+  min-width: 160px;
+  animation: menuFade 0.12s ease-out;
+}
+
+@keyframes menuFade {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chat-menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  background: transparent;
+  color: #E5E7EB;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.chat-menu-item:hover {
+  background: #374151;
+}
+
+.chat-menu-item.danger {
+  color: #F87171;
+}
+
+.chat-menu-item.danger:hover {
+  background: rgba(248, 113, 113, 0.12);
+  color: #FCA5A5;
+}
